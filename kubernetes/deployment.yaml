@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: multiingress
+  name: multiingress
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: multiingress
+  template:
+    metadata:
+      labels:
+        run: multiingress
+    spec:
+      containers:
+      - image: alekssaul/multiportingress
+        name: multiingress
+        ports:
+        - containerPort: 8082
+          name: zoo
+        - containerPort: 8081
+          name: foo
+        - containerPort: 8080
+          name: bar

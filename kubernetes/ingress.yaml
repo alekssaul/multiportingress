@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: multiingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: multiingress.apps.lab.alekssaul.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: multiingress
+          servicePort: 8080
+      - path: /foo
+        backend:
+          serviceName: multiingress
+          servicePort: 8081
+      - path: /zoo
+        backend:
+          serviceName: multiingress
+          servicePort: 8082
